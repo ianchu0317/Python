@@ -1,0 +1,3 @@
+Input a list separated by comma: red, black, pink, green, black, green, pink, red
+The entered list is : ['red', 'black', 'pink', 'green', 'black', 'green', 'pink', 'red']
+The sorted unique elements list is: ['black', 'green', 'pink', 'red']
