@@ -1,22 +1,9 @@
-# Python: Insert a string in the middle of a string
+#   add_tags('i', 'Python') -> '<i>Python</i>'
+#   add_tags('b', 'Python Tutorial') -> '<b>Python Tutorial </b>'
 
+def add_tags(tag, string):
+    return "<{0}>".format(tag) + string + "</{0}>".format(tag)
 
-def main():
-    # User input data
-    my_sentence = input("Enter a sentence: ")
-    string = input("Enter a string to insert in the middle of the sentence: ")
-
-    # Debug
-    print("Entered sentence is '{0}'".format(my_sentence))
-    print("String to insert is '{0}'".format(string))
-
-    # Change into list
-    my_sentence = my_sentence.split(" ")
-    middle_position = int(len(my_sentence) / 2)
-    my_sentence.insert(middle_position, string)
-
-    # Output
-    print("Modified sentence is '{0}'".format(" ".join(my_sentence)))
 
 if __name__ == '__main__':
-    main()
+    print(add_tags('i', 'Python'))
