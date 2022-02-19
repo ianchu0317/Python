@@ -15,10 +15,10 @@ def handleConnection(clientSocket, clientAddress):
     CONNECTED = True
     CLIENT_IP = clientAddress[0]
     print("{} has connected !".format(CLIENT_IP))
+    clientSocket.send(bytes(f"You're connected to {SERVER_ADDRESS[0]} !", "utf-8"))
 
-    message = str(clientSocket.recv(MSG_BUFF), "utf-8")
-    print(f"{CLIENT_IP} : {message}")
-    
+#    message = str(clientSocket.recv(MSG_BUFF), "utf-8")
+#    print(f"{CLIENT_IP} : {message}")
     while CONNECTED:
         message = str(clientSocket.recv(MSG_BUFF), "utf-8")
         printMessage(CLIENT_IP, message)
@@ -37,13 +37,13 @@ def main():
     # Create and listen in local computer
     s_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s_socket.bind(SERVER_ADDRESS)
-    s_socket.listen()
+    s_socket.listen(1)
     print("Server on {}:{}...".format(SERVER_ADDRESS[0], SERVER_ADDRESS[1]))
 
     connections = 0
     allConnectionsThread = []
 
-    while connections == 1:
+    while connections < 1:
         clientSocket, clientAddress = s_socket.accept()
         connections += 1
         currentConn = threading.Thread(target=handleConnection, args=(clientSocket, clientAddress))
@@ -57,5 +57,7 @@ def main():
 
     s_socket.close() # Close server
     print("Server finished :)")
+
+
 if __name__ == '__main__':
     main()
